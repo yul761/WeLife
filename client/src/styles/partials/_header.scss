@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
+  height: 20vh;
+  max-height: 220px;
+  &__leftArrow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 13vw;
+    max-height: 220px;
+    &-icon {
+      width: 13vw;
+      min-width: 188px;
+      max-height: 220px;
+      min-height: 188px;
+    }
+  }
+
+  &__logo {
+    &-icon {
+    }
+  }
+  &__rightArrow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 13vw;
+    max-height: 220px;
+    &-icon {
+      width: 13vw;
+      min-width: 188px;
+      max-height: 220px;
+      min-height: 188px;
+    }
+  }
+}
