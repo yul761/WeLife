@@ -1,0 +1,27 @@
+.AddComment {
+  width: 25vw;
+  display: flex;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    margin: 1vw;
+
+    &-upload {
+      margin-bottom: 30px;
+      height: 300px;
+      border: 1px black solid;
+    }
+
+    &-input {
+      height: 100px;
+      padding-left: 2%;
+      padding-top: 1%;
+    }
+
+    &-button {
+      margin-top: 30px;
+      height: 70px;
+    }
+  }
+}

@@ -19,6 +19,7 @@
   width: 100vw;
   height: 20vh;
   max-height: 220px;
+  min-height: 188px;
 }
 
 .header__leftArrow {
@@ -34,6 +35,8 @@
           justify-content: center;
   width: 13vw;
   max-height: 220px;
+  min-height: 188px;
+  min-width: 188px;
 }
 
 .header__leftArrow-icon {
@@ -56,6 +59,8 @@
           justify-content: center;
   width: 13vw;
   max-height: 220px;
+  min-height: 188px;
+  min-width: 188px;
 }
 
 .header__rightArrow-icon {
@@ -66,6 +71,71 @@
 }
 
 .community {
-  height: 80vh;
+  height: 83vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.AddComment {
+  width: 25vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.AddComment__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 20vw;
+  margin: 1vw;
+}
+
+.AddComment__form-upload {
+  margin-bottom: 30px;
+  height: 300px;
+  border: 1px black solid;
+}
+
+.AddComment__form-input {
+  height: 100px;
+  padding-left: 2%;
+  padding-top: 1%;
+}
+
+.AddComment__form-button {
+  margin-top: 30px;
+  height: 70px;
+}
+
+.PostSection {
+  width: 65vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.PostSection__content {
+  width: 40%;
+  height: 40%;
+  margin: 5%;
+  border-radius: 4px;
+  padding: 3%;
+  background-color: lightgrey;
 }
 /*# sourceMappingURL=main.css.map */
