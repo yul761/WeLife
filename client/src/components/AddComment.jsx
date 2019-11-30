@@ -7,20 +7,8 @@ var url = "http://localhost:8080";
 
 export default class AddComment extends Component {
   componentDidMount() {
-    this.uploadImg();
+    // this.uploadImg();
   }
-
-  uploadImg = () => {
-    let uploadInput = document.getElementById("upload__img");
-    let img = document.getElementsByClassName(
-      "AddComment__form-upload--preview--img"
-    )[0];
-    window.addEventListener("load", () => {
-      uploadInput.addEventListener("change", event => {
-        img.src = URL.createObjectURL(event.target.files[0]);
-      });
-    });
-  };
 
   render() {
     return (

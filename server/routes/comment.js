@@ -13,7 +13,8 @@ router.post("/", (request, response) => {
   let newPost = {
     id: json_helper.getNewId(),
     name: request.body.name,
-    comment: request.body.comment
+    comment: request.body.comment,
+    image: request.body.image
   };
 
   content.push(newPost);

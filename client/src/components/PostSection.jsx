@@ -25,7 +25,7 @@ export default class PostSection extends Component {
           <div className="PostSection__content" key={index}>
             <video
               className="PostSection__content-video"
-              poster={Images}
+              poster={element.image}
             ></video>
 
             <div className="PostSection__content-comment">
