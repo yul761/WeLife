@@ -23,6 +23,7 @@ export default class Community extends Component {
     this.fRef.current.addEventListener("submit", event => {
       event.preventDefault();
       console.log(event.target.comment.value);
+      console.log(event.target.upload.value);
       let newComment = {
         name: "Anonymous ",
         comment: event.target.comment.value

@@ -1,5 +1,5 @@
 .PostSection {
-  width: 65vw;
+  width: 70vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -8,9 +8,13 @@
   &__content {
     width: 40%;
     height: 40%;
-    margin: 5%;
+    margin: 2% 5%;
     border-radius: 4px;
     padding: 3%;
     background-color: lightgrey;
+    &-video {
+      width: 70%;
+      height: 40%;
+    }
   }
 }

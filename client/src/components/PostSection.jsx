@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Images from "../assets/images/video-list-0.jpg";
 
 export default class PostSection extends Component {
   constructor() {
@@ -22,10 +23,15 @@ export default class PostSection extends Component {
         console.log(element);
         return (
           <div className="PostSection__content" key={index}>
-            <div className="PostSection__content-name">{element.name}</div>
+            <video
+              className="PostSection__content-video"
+              poster={Images}
+            ></video>
+
             <div className="PostSection__content-comment">
               {element.comment}
             </div>
+            <div className="PostSection__content-name">{element.name}</div>
           </div>
         );
       });

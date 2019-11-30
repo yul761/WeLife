@@ -1,5 +1,5 @@
 .AddComment {
-  width: 25vw;
+  width: 20vw;
   display: flex;
   &__form {
     display: flex;
@@ -11,6 +11,33 @@
       margin-bottom: 30px;
       height: 300px;
       border: 1px black solid;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      &--preview {
+        width: 80%;
+        height: 70%;
+        &--img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      &--button {
+        width: 80%;
+        height: 20%;
+        background: none;
+        border: none;
+        &:focus {
+          outline: none;
+        }
+        &--icon {
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
 
     &-input {
@@ -22,6 +49,7 @@
     &-button {
       margin-top: 30px;
       height: 70px;
+      border-radius: 4px;
     }
   }
 }
