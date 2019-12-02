@@ -44,9 +44,11 @@ export default class AddComment extends Component {
             placeholder="Enter your comment here"
           ></textarea>
 
-          <button className="AddComment__form-button" type="submit">
-            UPLOAD
-          </button>
+          <input
+            className="AddComment__form-button"
+            type="submit"
+            value="UPLOAD"
+          />
         </form>
       </div>
     );

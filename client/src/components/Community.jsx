@@ -6,6 +6,7 @@ import upload from "../assets/icon/upload.png";
 
 var url = "http://localhost:8080";
 var imgUrl;
+var submitFlag = false;
 export default class Community extends Component {
   constructor() {
     super();
@@ -15,7 +16,6 @@ export default class Community extends Component {
 
   componentDidMount() {
     axios.get(`${url}/comment`).then(response => {
-      console.log(response.data);
       this.setState({ post: response.data });
     });
 
@@ -27,20 +27,35 @@ export default class Community extends Component {
     let img = document.getElementsByClassName(
       "AddComment__form-upload--preview--img"
     )[0];
+
     window.addEventListener("load", () => {
       uploadInput.addEventListener("change", event => {
-        img.src = URL.createObjectURL(event.target.files[0]);
-        console.log(URL.createObjectURL(event.target.files[0]));
-        imgUrl = URL.createObjectURL(event.target.files[0]);
+        let input = document.getElementsByClassName(
+          "AddComment__form-upload--button"
+        )[0].files[0];
+        let reader = new FileReader();
+        console.log(input);
+        reader.addEventListener("load", () => {
+          img.src = reader.result;
+          console.log(reader.result);
+          imgUrl = reader.result;
+        });
+
+        if (input) {
+          reader.readAsDataURL(input);
+        }
+        // img.src = reader.readAsDataURL(input).result;
+        // img.src = URL.createObjectURL(event.target.files[0]);
       });
     });
   };
 
   componentDidUpdate() {
+    console.log(this.fRef);
     this.fRef.current.addEventListener("submit", event => {
+      console.log("Form submit event fired!!");
+      console.log(this.fRef);
       event.preventDefault();
-      console.log(event.target.comment.value);
-      console.log(event.target.upload.value);
       let newComment = {
         name: "Anonymous ",
         comment: event.target.comment.value,
@@ -49,7 +64,7 @@ export default class Community extends Component {
       axios
         .post(`${url}/comment`, newComment)
         .then(response => {
-          alert("New Post Added.");
+          // alert("New Post Added.");
           console.log(response.data);
         })
         .then(() => {
