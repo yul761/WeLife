@@ -40,9 +40,9 @@
 }
 
 .header__leftArrow-icon {
-  width: 13vw;
+  width: 10vw;
   min-width: 188px;
-  max-height: 220px;
+  max-height: 200px;
   min-height: 188px;
 }
 
@@ -64,9 +64,9 @@
 }
 
 .header__rightArrow-icon {
-  width: 13vw;
+  width: 10vw;
   min-width: 188px;
-  max-height: 220px;
+  max-height: 200px;
   min-height: 188px;
 }
 
@@ -173,7 +173,7 @@
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .PostSection__content {
@@ -183,16 +183,35 @@
   border-radius: 4px;
   padding: 3%;
   background-color: lightgrey;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
 }
 
 .PostSection__content-video {
-  width: 60%;
-  height: 70%;
+  width: 80%;
+  height: 80%;
 }
 
 .PostSection__content-img {
-  width: 60%;
-  height: 70%;
+  width: 80%;
+  height: 80%;
+}
+
+.PostSection__content-comment {
+  width: 80%;
+}
+
+.PostSection__content-name {
+  width: 80%;
 }
 
 .generate {

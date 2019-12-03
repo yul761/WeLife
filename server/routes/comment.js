@@ -14,7 +14,8 @@ router.post("/", (request, response) => {
     id: json_helper.getNewId(),
     name: request.body.name,
     comment: request.body.comment,
-    image: request.body.image
+    image: request.body.image,
+    video: request.body.video
   };
 
   content.push(newPost);

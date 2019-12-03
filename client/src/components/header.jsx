@@ -10,11 +10,13 @@ export default class header extends Component {
       <div>
         <div className="header">
           <div className="header__leftArrow">
-            <img
-              className="header__leftArrow-icon"
-              alt="left arrow"
-              src={Left}
-            ></img>
+            <Link to="/community">
+              <img
+                className="header__leftArrow-icon"
+                alt="left arrow"
+                src={Left}
+              ></img>
+            </Link>
           </div>
 
           <div className="header__logo">
