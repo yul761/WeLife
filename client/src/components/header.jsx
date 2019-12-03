@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Left from "../assets/icon/left-arrow.png";
 import Right from "../assets/icon/right-arrow.png";
 import Logo from "../assets/icon/Logo.png";
+import { Link } from "react-router-dom";
 
 export default class header extends Component {
   render() {
@@ -20,11 +21,13 @@ export default class header extends Component {
             <img className="header__logo-icon" alt="logo" src={Logo}></img>
           </div>
           <div className="header__rightArrow">
-            <img
-              className="header__rightArrow-icon"
-              alt="right arrow"
-              src={Right}
-            ></img>
+            <Link to="/gif">
+              <img
+                className="header__rightArrow-icon"
+                alt="right arrow"
+                src={Right}
+              ></img>
+            </Link>
           </div>
         </div>
         <hr className="header__seperater"></hr>

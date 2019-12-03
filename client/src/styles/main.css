@@ -185,8 +185,168 @@
   background-color: lightgrey;
 }
 
-.PostSection__content-image {
+.PostSection__content-video {
   width: 60%;
   height: 70%;
+}
+
+.generate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 78vh;
+}
+
+.generate__overlay {
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 78vh;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.generate__overlay-upload {
+  background-color: white;
+  width: 40%;
+  height: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.generate__overlay-upload--preview {
+  width: 80%;
+  height: 50%;
+  margin: 1%;
+}
+
+.generate__overlay-upload--preview--src {
+  width: 100%;
+  height: 100%;
+  border: lightgrey 1px dotted;
+}
+
+.generate__overlay-upload--comment {
+  width: 80%;
+  height: 35%;
+  margin: 1%;
+}
+
+.generate__overlay-upload--controls {
+  width: 80%;
+  height: 35%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+.generate__overlay-upload--controls--upload {
+  width: 95px;
+  height: 40px;
+  background-color: lightblue;
+  border-radius: 8px;
+  margin: 1%;
+}
+
+.generate__overlay-upload--controls--cancel {
+  width: 95px;
+  height: 40px;
+  background-color: lightblue;
+  border-radius: 8px;
+  margin: 1%;
+}
+
+.generate__mid {
+  height: 100%;
+}
+
+.generate__mid-realtime {
+  width: 70vw;
+  height: 60vh;
+}
+
+.generate__mid-realtime--video {
+  width: 100%;
+  height: 100%;
+}
+
+.generate__mid-preview {
+  display: none;
+  width: 70vw;
+  height: 60vh;
+}
+
+.generate__mid-preview--video {
+  width: 100%;
+  height: 100%;
+}
+
+.generate__mid-control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 70vw;
+  height: 50px;
+  margin: 2%;
+  color: white;
+}
+
+.generate__mid-control--start {
+  width: 95px;
+  height: 40px;
+  background-color: lightblue;
+  border-radius: 8px;
+}
+
+.generate__mid-control--stop {
+  width: 95px;
+  height: 40px;
+  background-color: lightblue;
+  border-radius: 8px;
+}
+
+.generate__mid-control--upload {
+  width: 95px;
+  height: 40px;
+  background-color: lightblue;
+  border-radius: 8px;
 }
 /*# sourceMappingURL=main.css.map */

@@ -17,11 +17,11 @@ export default class PostSection extends Component {
       return this.props.post.map((element, index) => {
         return (
           <div className="PostSection__content" key={index}>
-            <img
-              className="PostSection__content-image"
+            <video
+              className="PostSection__content-video"
               // poster={element.image}
               src={element.image}
-            ></img>
+            ></video>
 
             <div className="PostSection__content-comment">
               {element.comment}

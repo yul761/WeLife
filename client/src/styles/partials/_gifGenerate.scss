@@ -1,0 +1,115 @@
+.generate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 78vh;
+  &__overlay {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 78vh;
+    z-index: 1;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    &-upload {
+      background-color: white;
+      width: 40%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &--preview {
+        width: 80%;
+        height: 50%;
+        margin: 1%;
+        &--src {
+          width: 100%;
+          height: 100%;
+          border: lightgrey 1px dotted;
+        }
+      }
+
+      &--comment {
+        width: 80%;
+        height: 35%;
+        margin: 1%;
+      }
+
+      &--controls {
+        width: 80%;
+        height: 35%;
+        display: flex;
+        flex-direction: row-reverse;
+        &--upload {
+          width: 95px;
+          height: 40px;
+          background-color: lightblue;
+          border-radius: 8px;
+          margin: 1%;
+        }
+
+        &--cancel {
+          width: 95px;
+          height: 40px;
+          background-color: lightblue;
+          border-radius: 8px;
+          margin: 1%;
+        }
+      }
+    }
+  }
+  &__mid {
+    height: 100%;
+    &-realtime {
+      width: 70vw;
+      height: 60vh;
+      &--video {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-preview {
+      display: none;
+      width: 70vw;
+      height: 60vh;
+      &--video {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-control {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 70vw;
+      height: 50px;
+      margin: 2%;
+      color: white;
+      &--start {
+        width: 95px;
+        height: 40px;
+        background-color: lightblue;
+        border-radius: 8px;
+      }
+
+      &--stop {
+        width: 95px;
+        height: 40px;
+        background-color: lightblue;
+        border-radius: 8px;
+      }
+
+      &--upload {
+        width: 95px;
+        height: 40px;
+        background-color: lightblue;
+        border-radius: 8px;
+      }
+    }
+  }
+}
