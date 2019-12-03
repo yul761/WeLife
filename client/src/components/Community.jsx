@@ -59,7 +59,8 @@ export default class Community extends Component {
       let newComment = {
         name: "Anonymous ",
         comment: event.target.comment.value,
-        image: imgUrl
+        image: imgUrl,
+        video: ""
       };
       axios
         .post(`${url}/comment`, newComment)

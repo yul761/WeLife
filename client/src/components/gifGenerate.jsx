@@ -167,7 +167,8 @@ export default class gifGenerate extends Component {
     let newPost = {
       name: "Anonymous",
       comment: event.target.comment.value,
-      image: dataUrl
+      image: "",
+      video: dataUrl
     };
     console.log(dataUrl);
     axios.post(`${url}/comment`, newPost).then(response => {
@@ -228,8 +229,6 @@ export default class gifGenerate extends Component {
               loop
             ></video>
           </div>
-          {/* <video id="resultVideo" autoPlay loop></video>
-        <video id="screenMedia" autoPlay></video> */}
 
           <div className="generate__mid-control">
             <button

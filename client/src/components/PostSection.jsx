@@ -10,6 +10,24 @@ export default class PostSection extends Component {
 
   componentDidUpdate() {}
 
+  imgOrvideo = element => {
+    if (element.image) {
+      return (
+        <img className="PostSection__content-img" src={element.image}></img>
+      );
+    } else if (element.video) {
+      return (
+        <video
+          autoPlay
+          loop
+          muted
+          className="PostSection__content-video"
+          src={element.video}
+        ></video>
+      );
+    }
+  };
+
   outputContent = () => {
     if (this.props.post.length === 0) {
       return "Loading ...";
@@ -17,11 +35,7 @@ export default class PostSection extends Component {
       return this.props.post.map((element, index) => {
         return (
           <div className="PostSection__content" key={index}>
-            <video
-              className="PostSection__content-video"
-              // poster={element.image}
-              src={element.image}
-            ></video>
+            {this.imgOrvideo(element)}
 
             <div className="PostSection__content-comment">
               {element.comment}
