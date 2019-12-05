@@ -1,14 +1,55 @@
 import React, { Component } from "react";
-import Images from "../assets/images/video-list-0.jpg";
+import $ from "jquery";
+
+var IndexSlider = 1;
+var flag;
 
 export default class PostSection extends Component {
   constructor() {
     super();
+    this.state = { sliderIndex: 1 };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    flag = false;
+    console.log("component did mount");
+    // this.showDivs(this.state.sliderIndex);
+  }
 
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    console.log("component did update");
+    if (flag) {
+      this.showDivs(IndexSlider);
+    }
+  }
+
+  showDivs = n => {
+    let i;
+    let x = document.getElementsByClassName("PostSection__content");
+    if (n > x.length) {
+      // this.setState({ sliderIndex: 1 });
+      IndexSlider = 1;
+    }
+
+    if (n < 1) {
+      // this.setState({ sliderIndex: x.length - 1 });
+      IndexSlider = x.length;
+    }
+
+    for (let i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+
+    console.log(x);
+    console.log(IndexSlider - 1);
+    console.log(x[IndexSlider - 1]);
+
+    x[IndexSlider - 1].style.display = "flex";
+  };
+
+  plusDivs = n => {
+    this.showDivs((IndexSlider += n));
+  };
 
   imgOrvideo = element => {
     if (element.image) {
@@ -33,6 +74,10 @@ export default class PostSection extends Component {
       return "Loading ...";
     } else {
       return this.props.post.map((element, index) => {
+        if (index === this.props.post.length - 1) {
+          flag = true;
+        }
+
         return (
           <div className="PostSection__content" key={index}>
             {this.imgOrvideo(element)}
@@ -48,6 +93,22 @@ export default class PostSection extends Component {
   };
 
   render() {
-    return <div className="PostSection">{this.outputContent()}</div>;
+    return (
+      <div className="PostSection">
+        {this.outputContent()}
+        <button
+          className="PostSection__button-left"
+          onClick={() => this.plusDivs(-1)}
+        >
+          &#10094;
+        </button>
+        <button
+          className="PostSection__button-right"
+          onClick={() => this.plusDivs(+1)}
+        >
+          &#10095;
+        </button>
+      </div>
+    );
   }
 }

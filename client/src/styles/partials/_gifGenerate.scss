@@ -3,7 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 78vh;
+  height: 85vh;
+  background-image: url("../assets/images/RecordBG.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   &__overlay {
     display: none;
     justify-content: center;
@@ -66,10 +69,55 @@
     &-realtime {
       width: 70vw;
       height: 60vh;
-      border: 1px lightgray solid;
+
+      display: flex;
+      flex-direction: row;
+
       &--video {
-        width: 100%;
+        width: 90%;
         height: 100%;
+        border: 1px black solid;
+        background-color: lightgray;
+        border-radius: 8px 0 8px 8px;
+      }
+
+      &--switch {
+        display: flex;
+        flex-direction: column;
+        width: 10%;
+
+        &--screen {
+          height: 100px;
+          width: 100%;
+          margin-bottom: 30px;
+          border-radius: 0 8px 8px 0;
+          margin-left: -2%;
+          background-color: lightgray;
+          border-top: 1px solid black;
+          border-right: 1px solid black;
+          border-bottom: 1px solid black;
+          border-left: none;
+          z-index: 3;
+
+          &:focus {
+            outline: none;
+          }
+        }
+        &--webcam {
+          height: 100px;
+          width: 90%;
+          border-radius: 0 8px 8px 0;
+          // margin-left: -2%;
+          border-top: 1px solid black;
+          border-right: 1px solid black;
+          border-bottom: 1px solid black;
+          border-left: none;
+          margin-top: -50%;
+
+          &:focus {
+            outline: none;
+          }
+        }
       }
     }
 
@@ -77,10 +125,11 @@
       display: none;
       width: 70vw;
       height: 60vh;
-      border: 1px lightgray solid;
+
       &--video {
-        width: 100%;
+        width: 90%;
         height: 100%;
+        border: 1px black solid;
       }
     }
 
@@ -88,10 +137,40 @@
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
-      width: 70vw;
+      width: 63vw;
       height: 50px;
       margin: 2%;
       color: white;
+
+      &--cancel {
+        width: 95px;
+        height: 40px;
+        border: none;
+        background-color: transparent;
+        &--icon {
+          width: 80px;
+          height: 80px;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+
+      &--recordButton {
+        width: 95px;
+        height: 40px;
+        // background-color: lightblue;
+        // border-radius: 8px;
+        border: none;
+        background-color: transparent;
+        &--icon {
+          width: 80px;
+          height: 80px;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
       &--start {
         width: 95px;
         height: 40px;
@@ -109,8 +188,17 @@
       &--upload {
         width: 95px;
         height: 40px;
-        background-color: lightblue;
-        border-radius: 8px;
+        background-color: transparent;
+        border: none;
+        // border-radius: 8px;
+        &--icon {
+          width: 80px;
+          height: 80px;
+        }
+
+        &:focus {
+          outline: none;
+        }
       }
     }
   }

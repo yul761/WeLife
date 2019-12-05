@@ -2,14 +2,18 @@ import React, { Component } from "react";
 import Header from "./components/header";
 import "./styles/main.css";
 import Community from "./components/Community";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import gif from "./components/gifGenerate";
 
-export default class App extends Component {
+class App extends Component {
+  constructor() {
+    super();
+  }
+
   render() {
     return (
       <div>
-        <Header />
+        <Header current={this.props.location.pathname} />
         <Redirect from="/" to="/community" />
         <Switch>
           <Route path="/community" component={Community} />
@@ -19,3 +23,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default withRouter(App);
