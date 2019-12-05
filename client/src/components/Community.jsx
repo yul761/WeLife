@@ -29,6 +29,7 @@ export default class Community extends Component {
     )[0];
 
     window.addEventListener("load", () => {
+      console.log("window loaded");
       uploadInput.addEventListener("change", event => {
         let input = document.getElementsByClassName(
           "AddComment__form-upload--button"

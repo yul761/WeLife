@@ -6,11 +6,14 @@ import Cancel from "../assets/icon/cancel.png";
 import Upload from "../assets/icon/openUpload.png";
 import Screen from "../assets/icon/monitor.png";
 import Camera from "../assets/icon/camera.png";
+import IconUpload from "../assets/icon/upload.png";
+import AddComment from "../components/AddComment";
 
 var chunks = [];
 var cams = [];
 var url = "http://localhost:8080";
 var dataUrl;
+var imgUrl;
 export default class gifGenerate extends Component {
   constructor() {
     super();
@@ -28,6 +31,11 @@ export default class gifGenerate extends Component {
 
   componentDidMount() {
     this.settingupCamera();
+    this.uploadImg();
+  }
+
+  componentDidUpdate() {
+    this.uploadImg();
   }
 
   createGif = () => {
@@ -281,7 +289,7 @@ export default class gifGenerate extends Component {
     let overlay = document.getElementsByClassName("generate__overlay")[0];
     alert("New post posted");
     overlay.style.display = "none";
-    this.cancelButtonHandler();
+    this.resetViewHandler();
   };
 
   overlayCancelHandler = () => {
@@ -291,7 +299,7 @@ export default class gifGenerate extends Component {
       "generate__overlay-upload--preview--src"
     )[0];
     video.src = null;
-    this.cancelButtonHandler();
+    this.resetViewHandler();
   };
 
   screenButtonHandler = event => {
@@ -300,6 +308,9 @@ export default class gifGenerate extends Component {
     )[0];
     let cameraButton = document.getElementsByClassName(
       "generate__mid-realtime--switch--webcam"
+    )[0];
+    let localUpload = document.getElementsByClassName(
+      "generate__mid-realtime--switch--upload"
     )[0];
 
     if (this.cameraStarted) {
@@ -310,10 +321,14 @@ export default class gifGenerate extends Component {
       screenButton.style.marginLeft = "-2%";
       screenButton.style.width = "100%";
       screenButton.style.backgroundColor = "lightgray";
-      cameraButton.style.zIndex = "1";
+      cameraButton.style.zIndex = "2";
       cameraButton.style.marginLeft = "0";
-      cameraButton.style.width = "90%";
+      cameraButton.style.width = "95%";
       cameraButton.style.backgroundColor = "white";
+      localUpload.style.zIndex = "1";
+      localUpload.style.marginLeft = "0";
+      localUpload.style.width = "90%";
+      localUpload.style.backgroundColor = "white";
 
       //screen record mode
       this.setState({ curMode: "SCREEN" });
@@ -327,6 +342,9 @@ export default class gifGenerate extends Component {
     let screenButton = document.getElementsByClassName(
       "generate__mid-realtime--switch--screen"
     )[0];
+    let localUpload = document.getElementsByClassName(
+      "generate__mid-realtime--switch--upload"
+    )[0];
 
     if (this.screenStarted) {
       alert("Screen recording....Do not switch mode");
@@ -336,18 +354,59 @@ export default class gifGenerate extends Component {
       cameraButton.style.marginLeft = "-2%";
       cameraButton.style.width = "100%";
       cameraButton.style.backgroundColor = "lightgray";
-      screenButton.style.zIndex = "1";
+      screenButton.style.zIndex = "2";
       screenButton.style.marginLeft = "0";
-      screenButton.style.width = "90%";
+      screenButton.style.width = "95%";
       screenButton.style.backgroundColor = "white";
+      localUpload.style.zIndex = "1";
+      localUpload.style.marginLeft = "0";
+      localUpload.style.width = "90%";
+      localUpload.style.backgroundColor = "white";
 
       // Camera record mode
       this.setState({ curMode: "CAMERA" });
     }
   };
 
+  localUploadHandler = () => {
+    let cameraButton = document.getElementsByClassName(
+      "generate__mid-realtime--switch--webcam"
+    )[0];
+    let screenButton = document.getElementsByClassName(
+      "generate__mid-realtime--switch--screen"
+    )[0];
+    let localUpload = document.getElementsByClassName(
+      "generate__mid-realtime--switch--upload"
+    )[0];
+
+    if (this.screenStarted) {
+      alert("Screen recording....Do not switch mode");
+    } else {
+      // style the button tab
+      localUpload.style.zIndex = "3";
+      localUpload.style.marginLeft = "-2%";
+      localUpload.style.width = "100%";
+      localUpload.style.backgroundColor = "lightgray";
+      cameraButton.style.zIndex = "2";
+      cameraButton.style.marginLeft = "0";
+      cameraButton.style.width = "95%";
+      cameraButton.style.backgroundColor = "white";
+      screenButton.style.zIndex = "1";
+      screenButton.style.marginLeft = "0";
+      screenButton.style.width = "90%";
+      screenButton.style.backgroundColor = "white";
+
+      // Camera record mode
+      this.setState({ curMode: "LOCALUPLOAD" });
+    }
+  };
+
   recordButtonHandler = curMode => {
+    let uploadform = document.getElementsByClassName(
+      "generate__mid-uploadform"
+    )[0];
     if (curMode === "CAMERA") {
+      uploadform.style.display = "none";
       // in cmaera mode now
       if (!this.cameraStarted) {
         //start recording
@@ -361,6 +420,7 @@ export default class gifGenerate extends Component {
         this.closeCam();
       }
     } else if (curMode === "SCREEN") {
+      uploadform.style.display = "none";
       // in screen capture mode now
       if (!this.screenStarted) {
         // starting
@@ -373,10 +433,82 @@ export default class gifGenerate extends Component {
         this.screenStarted = false;
         this.stopCapture();
       }
+    } else if (curMode === "LOCALUPLOAD") {
+      // in local upload mode now
+      console.log("In local upload now");
+      let realtimeVideo = document.getElementsByClassName(
+        "generate__mid-realtime--video"
+      )[0];
+
+      uploadform.style.display = "flex";
+      uploadform.style.zIndex = "30";
+
+      this.uploadImg();
     }
   };
 
-  cancelButtonHandler = () => {
+  uploadImg = () => {
+    console.log("uploadImg executed");
+    let uploadInput = document.getElementById("upload__img");
+    let img = document.getElementsByClassName(
+      "generate__mid-uploadform--form--upload--preview--img"
+    )[0];
+    console.log(uploadInput);
+    console.log(uploadInput.files[0]);
+
+    console.log(img);
+
+    // load event cannot fire !!!!!---Yuchen
+    // window.onload = () => {
+    // console.log("into window load event");
+    uploadInput.addEventListener("change", event => {
+      let input = document.getElementsByClassName(
+        "generate__mid-uploadform--form--upload--button"
+      )[0].files[0];
+      console.log(input);
+      let reader = new FileReader();
+      console.log(input);
+      reader.addEventListener("load", () => {
+        img.src = reader.result;
+        console.log(reader.result);
+        imgUrl = reader.result;
+      });
+      console.log(input);
+      if (input) {
+        reader.readAsDataURL(input);
+      }
+      // img.src = reader.readAsDataURL(input).result;
+      // img.src = URL.createObjectURL(event.target.files[0]);
+    });
+    console.log(uploadInput.files[0]);
+    // };
+  };
+
+  formSubmitHandler = event => {
+    event.preventDefault();
+    let newComment = {
+      name: "Anonymous",
+      comment: event.target.comment.value,
+      image: imgUrl,
+      video: ""
+    };
+
+    axios
+      .post(`${url}/comment`, newComment)
+      .then(response => {
+        // alert("New Post Added.");
+        console.log(response.data);
+      })
+      .then(alert("New post added"));
+
+    let img = document.getElementsByClassName(
+      "generate__mid-uploadform--form--upload--preview--img"
+    )[0];
+    img.src = IconUpload;
+    event.target.reset();
+  };
+
+  resetViewHandler = () => {
     // reset view, clear preview src and set real time src to null
     let realtimeContainer = document.getElementsByClassName(
       "generate__mid-realtime"
@@ -470,6 +602,18 @@ export default class gifGenerate extends Component {
                   alt="Camera icon"
                 ></img>
               </button>
+              <button
+                className="generate__mid-realtime--switch--upload"
+                onClick={() => {
+                  this.localUploadHandler();
+                }}
+              >
+                <img
+                  className="generate__mid-realtime--switch--upload--icon"
+                  src={IconUpload}
+                  alt="upload icon"
+                ></img>
+              </button>
             </div>
           </div>
 
@@ -481,11 +625,51 @@ export default class gifGenerate extends Component {
             ></video>
           </div>
 
+          <div className="generate__mid-uploadform">
+            <form
+              className="generate__mid-uploadform--form"
+              onSubmit={event => {
+                this.formSubmitHandler(event);
+              }}
+            >
+              <div className="generate__mid-uploadform--form--upload">
+                <label
+                  htmlFor="upload__img"
+                  className="generate__mid-uploadform--form--upload--preview"
+                >
+                  <img
+                    className="generate__mid-uploadform--form--upload--preview--img"
+                    src={IconUpload}
+                  ></img>
+                </label>
+
+                <input
+                  className="generate__mid-uploadform--form--upload--button"
+                  id="upload__img"
+                  type="file"
+                  name="upload"
+                ></input>
+              </div>
+
+              <textarea
+                className="generate__mid-uploadform--form--upload--input"
+                name="comment"
+                placeholder="Enter your comment here"
+              ></textarea>
+
+              <input
+                className="generate__mid-uploadform--form--upload--submit"
+                type="submit"
+                value="UPLOAD"
+              />
+            </form>
+          </div>
+
           <div className="generate__mid-control">
             <button
               className="generate__mid-control--cancel"
               onClick={() => {
-                this.cancelButtonHandler();
+                this.resetViewHandler();
               }}
             >
               <img

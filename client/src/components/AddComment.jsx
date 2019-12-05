@@ -30,12 +30,7 @@ export default class AddComment extends Component {
               id="upload__img"
               type="file"
               name="upload"
-            >
-              {/* <img
-                className="AddComment__form-upload--button--icon"
-                src={upload}
-              ></img> */}
-            </input>
+            ></input>
           </div>
 
           <textarea
