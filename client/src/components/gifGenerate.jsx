@@ -153,6 +153,7 @@ export default class gifGenerate extends Component {
 
     this.setState({ recorded: this.recording });
     this.setState({ camRecorded: null });
+    chunks = [];
   };
 
   uploadHandler = () => {
@@ -265,6 +266,7 @@ export default class gifGenerate extends Component {
 
     this.setState({ camRecorded: this.recording });
     this.setState({ recorded: null });
+    cams = [];
   };
 
   submitHandler = event => {

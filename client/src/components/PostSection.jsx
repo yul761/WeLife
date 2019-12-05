@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import $ from "jquery";
+import Menu from "../assets/icon/menu.png";
 
 var IndexSlider = 1;
 var flag;
@@ -82,10 +83,20 @@ export default class PostSection extends Component {
           <div className="PostSection__content" key={index}>
             {this.imgOrvideo(element)}
 
-            <div className="PostSection__content-comment">
-              {element.comment}
+            <div className="PostSection__content-commentSection">
+              <div className="PostSection__content-commentSection--userInfo">
+                <div className="PostSection__content-commentSection--userInfo--name">
+                  {element.name}
+                </div>
+                <img
+                  className="PostSection__content-commentSection--userInfo--edit"
+                  src={Menu}
+                ></img>
+              </div>
+              <div className="PostSection__content-commentSection--comment">
+                {element.comment}
+              </div>
             </div>
-            <div className="PostSection__content-name">{element.name}</div>
           </div>
         );
       });
