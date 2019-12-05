@@ -4,6 +4,8 @@ import axios from "axios";
 import RecordIcon from "../assets/icon/recording.png";
 import Cancel from "../assets/icon/cancel.png";
 import Upload from "../assets/icon/openUpload.png";
+import Screen from "../assets/icon/monitor.png";
+import Camera from "../assets/icon/camera.png";
 
 var chunks = [];
 var cams = [];
@@ -293,7 +295,9 @@ export default class gifGenerate extends Component {
   };
 
   screenButtonHandler = event => {
-    let screenButton = event.target;
+    let screenButton = document.getElementsByClassName(
+      "generate__mid-realtime--switch--screen"
+    )[0];
     let cameraButton = document.getElementsByClassName(
       "generate__mid-realtime--switch--webcam"
     )[0];
@@ -317,7 +321,9 @@ export default class gifGenerate extends Component {
   };
 
   cameraButtonHandler = event => {
-    let cameraButton = event.target;
+    let cameraButton = document.getElementsByClassName(
+      "generate__mid-realtime--switch--webcam"
+    )[0];
     let screenButton = document.getElementsByClassName(
       "generate__mid-realtime--switch--screen"
     )[0];
@@ -446,7 +452,11 @@ export default class gifGenerate extends Component {
                   this.screenButtonHandler(event);
                 }}
               >
-                SCREEN
+                <img
+                  className="generate__mid-realtime--switch--screen--icon"
+                  src={Screen}
+                  alt="Screen icon"
+                ></img>
               </button>
               <button
                 className="generate__mid-realtime--switch--webcam"
@@ -454,7 +464,11 @@ export default class gifGenerate extends Component {
                   this.cameraButtonHandler(event);
                 }}
               >
-                WEBCAM
+                <img
+                  className="generate__mid-realtime--switch--webcam--icon"
+                  src={Camera}
+                  alt="Camera icon"
+                ></img>
               </button>
             </div>
           </div>

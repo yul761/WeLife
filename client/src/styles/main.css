@@ -432,6 +432,11 @@ body {
   z-index: 3;
 }
 
+.generate__mid-realtime--switch--screen--icon {
+  width: 50%;
+  height: 50%;
+}
+
 .generate__mid-realtime--switch--screen:focus {
   outline: none;
 }
@@ -445,6 +450,11 @@ body {
   border-bottom: 1px solid black;
   border-left: none;
   margin-top: -50%;
+}
+
+.generate__mid-realtime--switch--webcam--icon {
+  width: 50%;
+  height: 50%;
 }
 
 .generate__mid-realtime--switch--webcam:focus {
