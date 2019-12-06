@@ -1,20 +1,24 @@
 import React, { Component } from "react";
 import $ from "jquery";
 import Menu from "../assets/icon/menu.png";
+import axios from "axios";
 
 var IndexSlider = 1;
 var flag;
+var url = "http://localhost:8080";
 
 export default class PostSection extends Component {
   constructor() {
     super();
-    this.state = { sliderIndex: 1 };
+    this.state = { sliderIndex: 1, curId: undefined, post: undefined };
   }
 
   componentDidMount() {
     flag = false;
     console.log("component did mount");
-    // this.showDivs(this.state.sliderIndex);
+    axios.get(`${url}/comment`).then(response => {
+      this.setState({ post: response.data });
+    });
   }
 
   componentDidUpdate() {
@@ -70,12 +74,46 @@ export default class PostSection extends Component {
     }
   };
 
+  openEditMenu = id => {
+    let menu = document.getElementsByClassName("PostSection__overlay")[0];
+    menu.style.display = "flex";
+    this.setState({ curId: id });
+  };
+
+  MenuCancelButtonHandler = () => {
+    let menu = document.getElementsByClassName("PostSection__overlay")[0];
+    menu.style.display = "none";
+  };
+
+  MenuDeleteButtonHandler = () => {
+    console.log(this.state.curId);
+    axios
+      .delete(`${url}/comment`, this.state.curId)
+      .then(response => {
+        console.log(response);
+        let newpost = [];
+        this.state.post.map(element => {
+          if (element.id !== this.state.curId) {
+            newpost.push(element);
+          }
+        });
+        this.setState({ post: newpost });
+      })
+      .then(
+        axios.get(`${url}/comment`).then(response => {
+          this.setState({ post: response.data });
+          let menu = document.getElementsByClassName("PostSection__overlay")[0];
+          menu.style.display = "none";
+        })
+      );
+  };
+
   outputContent = () => {
-    if (this.props.post.length === 0) {
+    if (this.state.post === undefined) {
       return "Loading ...";
     } else {
-      return this.props.post.map((element, index) => {
-        if (index === this.props.post.length - 1) {
+      return this.state.post.map((element, index) => {
+        if (index === this.state.post.length - 1) {
           flag = true;
         }
 
@@ -88,10 +126,17 @@ export default class PostSection extends Component {
                 <div className="PostSection__content-commentSection--userInfo--name">
                   {element.name}
                 </div>
-                <img
+                <button
                   className="PostSection__content-commentSection--userInfo--edit"
-                  src={Menu}
-                ></img>
+                  onClick={() => {
+                    this.openEditMenu(element.id);
+                  }}
+                >
+                  <img
+                    className="PostSection__content-commentSection--userInfo--edit--icon"
+                    src={Menu}
+                  ></img>
+                </button>
               </div>
               <div className="PostSection__content-commentSection--comment">
                 {element.comment}
@@ -119,6 +164,27 @@ export default class PostSection extends Component {
         >
           &#10095;
         </button>
+
+        <div className="PostSection__overlay">
+          <div className="PostSection__overlay-option">
+            <button
+              className="PostSection__overlay-option--delete"
+              onClick={() => {
+                this.MenuDeleteButtonHandler();
+              }}
+            >
+              DELETE
+            </button>
+            <button
+              className="PostSection__overlay-option--cancel"
+              onClick={() => {
+                this.MenuCancelButtonHandler();
+              }}
+            >
+              CALCEL
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

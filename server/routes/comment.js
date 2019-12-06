@@ -6,7 +6,7 @@ const json_helper = require("../helper/json_helper");
 const contentFilename = __dirname + "/../model/content.json";
 
 router.get("/", (request, response) => {
-  response.send(content);
+  response.json(content);
 });
 
 router.post("/", (request, response) => {
@@ -21,7 +21,22 @@ router.post("/", (request, response) => {
   content.push(newPost);
 
   json_helper.writeJson(contentFilename, content);
-  response.send(content);
+  response.json(content);
+});
+
+router.delete("/", (request, response) => {
+  let id = request.body.id;
+  let location = undefined;
+
+  content.map((element, index) => {
+    if (element.id === id && location === undefined) {
+      location = index;
+    }
+  });
+
+  content.splice(location, 1);
+  json_helper.writeJson(contentFilename, content);
+  response.json(content);
 });
 
 module.exports = router;
