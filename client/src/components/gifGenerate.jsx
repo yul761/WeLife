@@ -322,15 +322,15 @@ export default class gifGenerate extends Component {
       screenButton.style.zIndex = "3";
       screenButton.style.marginLeft = "-2%";
       screenButton.style.width = "100%";
-      screenButton.style.backgroundColor = "lightgray";
+      screenButton.style.backgroundColor = "rgb(255, 255, 255)";
       cameraButton.style.zIndex = "2";
       cameraButton.style.marginLeft = "0";
       cameraButton.style.width = "95%";
-      cameraButton.style.backgroundColor = "white";
+      cameraButton.style.backgroundColor = "rgb(230, 230, 230)";
       localUpload.style.zIndex = "1";
       localUpload.style.marginLeft = "0";
       localUpload.style.width = "90%";
-      localUpload.style.backgroundColor = "white";
+      localUpload.style.backgroundColor = "rgb(230, 230, 230)";
 
       //screen record mode
       this.setState({ curMode: "SCREEN" });
@@ -355,15 +355,15 @@ export default class gifGenerate extends Component {
       cameraButton.style.zIndex = "3";
       cameraButton.style.marginLeft = "-2%";
       cameraButton.style.width = "100%";
-      cameraButton.style.backgroundColor = "lightgray";
+      cameraButton.style.backgroundColor = "rgb(255, 255, 255)";
       screenButton.style.zIndex = "2";
       screenButton.style.marginLeft = "0";
       screenButton.style.width = "95%";
-      screenButton.style.backgroundColor = "white";
+      screenButton.style.backgroundColor = "rgb(230, 230, 230)";
       localUpload.style.zIndex = "1";
       localUpload.style.marginLeft = "0";
-      localUpload.style.width = "90%";
-      localUpload.style.backgroundColor = "white";
+      localUpload.style.width = "95%";
+      localUpload.style.backgroundColor = "rgb(230, 230, 230)";
 
       // Camera record mode
       this.setState({ curMode: "CAMERA" });
@@ -388,15 +388,15 @@ export default class gifGenerate extends Component {
       localUpload.style.zIndex = "3";
       localUpload.style.marginLeft = "-2%";
       localUpload.style.width = "100%";
-      localUpload.style.backgroundColor = "lightgray";
+      localUpload.style.backgroundColor = "rgb(255, 255, 255)";
       cameraButton.style.zIndex = "2";
       cameraButton.style.marginLeft = "0";
       cameraButton.style.width = "95%";
-      cameraButton.style.backgroundColor = "white";
+      cameraButton.style.backgroundColor = "rgb(230, 230, 230)";
       screenButton.style.zIndex = "1";
       screenButton.style.marginLeft = "0";
       screenButton.style.width = "90%";
-      screenButton.style.backgroundColor = "white";
+      screenButton.style.backgroundColor = "rgb(230, 230, 230)";
 
       // Camera record mode
       this.setState({ curMode: "LOCALUPLOAD" });

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Logo from "../assets/icon/Logo.png";
-import Logo__2 from "../assets/icon/logo__2.png";
+import Logo__2 from "../assets/icon/Logo-black.png";
 import { Link } from "react-router-dom";
 
 export default class header extends Component {
@@ -25,10 +25,10 @@ export default class header extends Component {
   manageNavLink = () => {
     if (this.state.curPath === "/community") {
       console.log("Current page is Community page");
-      let community = document.getElementsByClassName("header__community")[0];
-      community.style.backgroundColor = "rgba(82, 75, 75, 0.7)";
-      let record = document.getElementsByClassName("header__gif")[0];
-      record.style.backgroundColor = "#323232";
+      // let community = document.getElementsByClassName("header__community")[0];
+      // community.style.backgroundColor = "rgba(82, 75, 75, 0.7)";
+      // let record = document.getElementsByClassName("header__gif")[0];
+      // record.style.backgroundColor = "#323232";
       // record.onmouseover = () => {
       //   record.style.backgroundColor = "rgba(82, 75, 75, 0.7)";
       // };
@@ -36,16 +36,16 @@ export default class header extends Component {
       //   record.style.backgroundColor = "#323232";
       // };
     } else if (this.state.curPath === "/gif") {
-      let community = document.getElementsByClassName("header__community")[0];
-      community.style.backgroundColor = "#323232";
+      // let community = document.getElementsByClassName("header__community")[0];
+      // community.style.backgroundColor = "#323232";
       // community.onmouseover = () => {
       //   community.style.backgroundColor = "rgba(82, 75, 75, 0.7)";
       // };
       // community.onmouseleave = () => {
       //   community.style.backgroundColor = "#323232";
       // };
-      let record = document.getElementsByClassName("header__gif")[0];
-      record.style.backgroundColor = "rgba(82, 75, 75, 0.7)";
+      // let record = document.getElementsByClassName("header__gif")[0];
+      // record.style.backgroundColor = "rgba(82, 75, 75, 0.7)";
       console.log("Current page is GIf generate page");
     }
   };

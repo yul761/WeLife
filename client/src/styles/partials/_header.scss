@@ -3,15 +3,15 @@
   flex-direction: row;
   justify-content: flex-start;
   width: 100vw;
-  height: 15vh;
-  max-height: 220px;
-  min-height: 150px;
-  background-color: #323232;
+  height: 100px;
+  // max-height: 220px;
+  // min-height: 150px;
+  background-color: rgb(255, 255, 255);
 
   &__logo {
     margin-left: 12.5vw;
     width: 180px;
-    height: 150px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,30 +22,31 @@
   }
 
   &__community {
-    width: 10vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     &-label {
-      font-size: 25px;
+      // font-size: 25px;
       font-weight: bold;
-      color: white;
+      color: black;
     }
   }
 
   &__recording {
-    width: 10vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     &-label {
-      font-size: 25px;
+      // font-size: 25px;
       font-weight: bold;
-      color: white;
+      color: black;
     }
   }
 
   &__link {
+    width: 15vw;
     margin-left: 5vw;
     margin-right: 5vw;
     display: flex;
@@ -53,8 +54,8 @@
     align-items: center;
     text-decoration: none;
 
-    &:hover {
-      background-color: rgba(82, 75, 75, 0.7);
-    }
+    // &:hover {
+    //   background-color: rgba(82, 75, 75, 0.7);
+    // }
   }
 }
