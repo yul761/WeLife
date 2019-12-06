@@ -114,6 +114,8 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-transition: ease 1s;
+  transition: ease 1s;
 }
 
 .community__seperater {
@@ -220,7 +222,7 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 4px;
-  padding: 3%;
+  padding: 2% 9%;
   background-color: transparent;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -258,7 +260,6 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-left: 1%;
   width: 15%;
 }
 
@@ -267,7 +268,7 @@ body {
   height: 5%;
   border-bottom: 1px lightgray solid;
   background-color: white;
-  border-radius: 4px 4px 0 0;
+  border-radius: 0 4px 0 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -577,7 +578,7 @@ body {
   border-right: 1px solid black;
   border-bottom: 1px solid black;
   border-left: none;
-  margin-top: -10%;
+  margin-top: -30%;
   z-index: 1;
 }
 
