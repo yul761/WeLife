@@ -72,10 +72,37 @@
       }
       &--comment {
         width: 100%;
-        height: 40%;
+        height: 75%;
         border-top: 1px lightgray solid;
         background-color: white;
-        border-radius: 0 0 4px 4px;
+        // border-radius: 0 0 4px 4px;
+      }
+
+      &--add {
+        width: 100%;
+        // height: 270px;
+        height: 20%;
+        &--form {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          &--comment {
+            width: 100%;
+            height: 70%;
+            border: none;
+            border-top: 1px lightgray solid;
+            border-right: 1px lightgray solid;
+          }
+          &--submit {
+            width: 100%;
+            height: 30%;
+            background-color: white;
+            border: 1px lightgray solid;
+            border-left: none;
+            border-radius: 0 0 4px 0;
+          }
+        }
       }
     }
   }

@@ -305,10 +305,43 @@ body {
 
 .PostSection__content-commentSection--comment {
   width: 100%;
-  height: 40%;
+  height: 75%;
   border-top: 1px lightgray solid;
   background-color: white;
-  border-radius: 0 0 4px 4px;
+}
+
+.PostSection__content-commentSection--add {
+  width: 100%;
+  height: 20%;
+}
+
+.PostSection__content-commentSection--add--form {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.PostSection__content-commentSection--add--form--comment {
+  width: 100%;
+  height: 70%;
+  border: none;
+  border-top: 1px lightgray solid;
+  border-right: 1px lightgray solid;
+}
+
+.PostSection__content-commentSection--add--form--submit {
+  width: 100%;
+  height: 30%;
+  background-color: white;
+  border: 1px lightgray solid;
+  border-left: none;
+  border-radius: 0 0 4px 0;
 }
 
 .PostSection__button-left {

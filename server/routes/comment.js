@@ -13,12 +13,26 @@ router.post("/", (request, response) => {
   let newPost = {
     id: json_helper.getNewId(),
     name: request.body.name,
-    comment: request.body.comment,
+    comment: [],
     image: request.body.image,
     video: request.body.video
   };
+  newPost.comment.push(request.body.comment);
 
   content.push(newPost);
+
+  json_helper.writeJson(contentFilename, content);
+  response.json(content);
+});
+
+// add comment to exist post
+router.put("/:id", (request, response) => {
+  // let newComment = request.body.comment;
+  let postId = request.params.id;
+  let curPost = content.find(element => element.id === postId);
+  let curIndex = content.findIndex(element => element.id === postId);
+  // curPost.comment.push(newComment);
+  content.splice(curIndex, 1, request.body);
 
   json_helper.writeJson(contentFilename, content);
   response.json(content);

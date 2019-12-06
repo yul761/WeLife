@@ -108,6 +108,18 @@ export default class PostSection extends Component {
       );
   };
 
+  addCommentHandler = (id, event, post) => {
+    event.preventDefault();
+    let newComment = event.target.comment.value;
+    post.comment.push(newComment);
+
+    axios.put(`${url}/comment/${id}`, post).then(response => {
+      this.setState({ post: response.data });
+      // console.log(response.data);
+    });
+    event.target.reset();
+  };
+
   outputContent = () => {
     if (this.state.post === undefined) {
       return "Loading ...";
@@ -139,13 +151,45 @@ export default class PostSection extends Component {
                 </button>
               </div>
               <div className="PostSection__content-commentSection--comment">
-                {element.comment}
+                {/* {element.comment} */}
+                {this.outputComment(element.comment)}
+              </div>
+
+              <div className="PostSection__content-commentSection--add">
+                <form
+                  className="PostSection__content-commentSection--add--form"
+                  onSubmit={event => {
+                    this.addCommentHandler(element.id, event, element);
+                  }}
+                >
+                  <input
+                    className="PostSection__content-commentSection--add--form--comment"
+                    name="comment"
+                    placeholder="Enter your comment here"
+                  ></input>
+                  <button
+                    className="PostSection__content-commentSection--add--form--submit"
+                    type="submit"
+                  >
+                    SUBMIT
+                  </button>
+                </form>
               </div>
             </div>
           </div>
         );
       });
     }
+  };
+
+  outputComment = commentArray => {
+    return commentArray.map(element => {
+      return (
+        <div className="PostSection__content-commentSection--comment--content">
+          {element}
+        </div>
+      );
+    });
   };
 
   render() {
