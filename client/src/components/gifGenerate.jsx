@@ -403,10 +403,45 @@ export default class gifGenerate extends Component {
     }
   };
 
+  startRecordButtonAnimation = () => {
+    let recordbuttonIcon = document.getElementsByClassName(
+      "generate__mid-control--recordButton--icon"
+    )[0];
+    recordbuttonIcon.style.animationName = "pulse";
+    recordbuttonIcon.style.animationDuration = "1.5s";
+    recordbuttonIcon.style.animationIterationCount = "infinite";
+    recordbuttonIcon.style.animationTimingFunction = "linear";
+
+    // return recordbuttonIcon.animate(
+    //   [
+    //     {
+    //       "0%": { "box-shadow": "0px 0px 5px 0px rgba(0, 0, 0, 0.3)" },
+    //       "65%": { "box-shadow": "0px 0px 5px 13px rgba(0, 0, 0, 0.3)" },
+    //       "90%": { "box-shadow": "0px 0px 5px 13px rgba(0, 0, 0, 0)" }
+    //     }
+    //   ],
+    //   {
+    //     duration: 1500,
+    //     iterations: Infinity,
+    //     easing: "linear"
+    //   }
+    // );
+  };
+
+  stopRecordButtonAnimation = () => {
+    let recordbuttonIcon = document.getElementsByClassName(
+      "generate__mid-control--recordButton--icon"
+    )[0];
+    recordbuttonIcon.style.animationName = "";
+  };
+
   recordButtonHandler = curMode => {
     let uploadform = document.getElementsByClassName(
       "generate__mid-uploadform"
     )[0];
+    // let recordAnimation = this.RecordButtonAnimationSetup();
+    // console.log(recordAnimation);
+
     if (curMode === "CAMERA") {
       uploadform.style.display = "none";
       // in cmaera mode now
@@ -415,11 +450,17 @@ export default class gifGenerate extends Component {
         console.log("Start recording in CAMERA mode");
         this.cameraStarted = true;
         this.openCam();
+        this.startRecordButtonAnimation();
+
+        console.log("Animation start");
       } else {
         //stop recording
         console.log("Stop recording in CAMERA mode");
         this.cameraStarted = false;
         this.closeCam();
+        this.stopRecordButtonAnimation();
+
+        console.log("Animation paused");
       }
     } else if (curMode === "SCREEN") {
       uploadform.style.display = "none";
@@ -429,11 +470,17 @@ export default class gifGenerate extends Component {
         console.log("Start recording in Screen Mode");
         this.screenStarted = true;
         this.startCapture();
+        this.startRecordButtonAnimation();
+
+        console.log("Animation start");
       } else {
         //stop recording
         console.log("Stop recording in Screen mode");
         this.screenStarted = false;
         this.stopCapture();
+        this.stopRecordButtonAnimation();
+
+        console.log("Animation paused");
       }
     } else if (curMode === "LOCALUPLOAD") {
       // in local upload mode now

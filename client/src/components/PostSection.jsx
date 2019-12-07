@@ -162,11 +162,11 @@ export default class PostSection extends Component {
                     this.addCommentHandler(element.id, event, element);
                   }}
                 >
-                  <input
+                  <textarea
                     className="PostSection__content-commentSection--add--form--comment"
                     name="comment"
                     placeholder="Enter your comment here"
-                  ></input>
+                  ></textarea>
                   <button
                     className="PostSection__content-commentSection--add--form--submit"
                     type="submit"
