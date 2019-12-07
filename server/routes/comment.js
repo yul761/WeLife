@@ -17,7 +17,12 @@ router.post("/", (request, response) => {
     image: request.body.image,
     video: request.body.video
   };
-  newPost.comment.push(request.body.comment);
+  let newComment = {
+    comment: request.body.comment,
+    timestamp: new Date(),
+    likes: 0
+  };
+  newPost.comment.push(newComment);
 
   content.push(newPost);
 

@@ -110,7 +110,12 @@ export default class PostSection extends Component {
 
   addCommentHandler = (id, event, post) => {
     event.preventDefault();
-    let newComment = event.target.comment.value;
+    // let newComment = event.target.comment.value;
+    let newComment = {
+      comment: event.target.comment.value,
+      timestamp: new Date(),
+      likes: 0
+    };
     post.comment.push(newComment);
 
     axios.put(`${url}/comment/${id}`, post).then(response => {
@@ -186,7 +191,12 @@ export default class PostSection extends Component {
     return commentArray.map(element => {
       return (
         <div className="PostSection__content-commentSection--comment--content">
-          {element}
+          <div className="PostSection__content-commentSection--comment--content--text">
+            {element.comment}
+          </div>
+          <div className="PostSection__content-commentSection--comment--content--date">
+            {element.timestamp}
+          </div>
         </div>
       );
     });
