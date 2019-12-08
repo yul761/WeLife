@@ -88,11 +88,16 @@
         background-color: white;
         // border-radius: 0 0 4px 4px;
         overflow-y: scroll;
+
         &--content {
           border-bottom: 1px lightgray solid;
-          height: 50px;
+          height: 80px;
+          width: 100%;
           padding-left: 2%;
           padding-top: 2%;
+          &--text {
+            overflow-wrap: normal;
+          }
         }
       }
 

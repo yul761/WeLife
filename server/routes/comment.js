@@ -17,9 +17,10 @@ router.post("/", (request, response) => {
     image: request.body.image,
     video: request.body.video
   };
+  let curTime = new Date();
   let newComment = {
     comment: request.body.comment,
-    timestamp: new Date(),
+    timestamp: curTime.getTime(),
     likes: 0
   };
   newPost.comment.push(newComment);

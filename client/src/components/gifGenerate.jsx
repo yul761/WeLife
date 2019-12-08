@@ -370,6 +370,7 @@ export default class gifGenerate extends Component {
     }
   };
 
+  // click the local upload tab
   localUploadHandler = () => {
     let cameraButton = document.getElementsByClassName(
       "generate__mid-realtime--switch--webcam"
@@ -398,7 +399,7 @@ export default class gifGenerate extends Component {
       screenButton.style.width = "90%";
       screenButton.style.backgroundColor = "rgb(230, 230, 230)";
 
-      // Camera record mode
+      // local upload mode
       this.setState({ curMode: "LOCALUPLOAD" });
     }
   };
@@ -602,7 +603,6 @@ export default class gifGenerate extends Component {
               className="generate__overlay-upload--comment"
               placeholder="Enter your comment here"
               name="comment"
-              defaultValue="This is text area"
             ></textarea>
             <div className="generate__overlay-upload--controls">
               <button

@@ -111,9 +111,10 @@ export default class PostSection extends Component {
   addCommentHandler = (id, event, post) => {
     event.preventDefault();
     // let newComment = event.target.comment.value;
+    let curTime = new Date();
     let newComment = {
       comment: event.target.comment.value,
-      timestamp: new Date(),
+      timestamp: curTime.getTime(),
       likes: 0
     };
     post.comment.push(newComment);
@@ -186,16 +187,48 @@ export default class PostSection extends Component {
       });
     }
   };
+  getTimeDiff = (date1, date2) => {
+    let diff = date2 - date1;
+    let dayDiff = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let result = dayDiff === 1 ? "1 day ago " : dayDiff + " days ago";
+    if (dayDiff === 0) {
+      let min = Math.floor(diff / (1000 * 60));
+      let seconds = Math.floor(diff / 1000);
+      let hours = Math.floor(diff / (1000 * 60 * 60));
+
+      if (seconds > 60) {
+        if (min > 60) {
+          result = hours === 1 ? "1 hour ago " : hours + " hours ago";
+        } else {
+          result = min === 1 ? "1 minute ago " : min + " minutes ago ";
+        }
+      } else {
+        result =
+          seconds === 1 || seconds === 0
+            ? `${seconds} second ago`
+            : seconds + " seconds ago ";
+      }
+    } else if (dayDiff > 365) {
+      result =
+        Math.floor(dayDiff / 365) === 1
+          ? "1 year ago "
+          : Math.floor(dayDiff / 365) + " years ago ";
+    }
+    return result;
+  };
 
   outputComment = commentArray => {
-    return commentArray.map(element => {
+    return commentArray.map((element, index) => {
       return (
-        <div className="PostSection__content-commentSection--comment--content">
+        <div
+          className="PostSection__content-commentSection--comment--content"
+          key={index}
+        >
           <div className="PostSection__content-commentSection--comment--content--text">
             {element.comment}
           </div>
           <div className="PostSection__content-commentSection--comment--content--date">
-            {element.timestamp}
+            {this.getTimeDiff(new Date(element.timestamp), new Date())}
           </div>
         </div>
       );
