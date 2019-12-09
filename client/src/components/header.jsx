@@ -56,16 +56,18 @@ export default class header extends Component {
           <div className="header__logo">
             <img className="header__logo-icon" alt="logo" src={Logo__2}></img>
           </div>
-          <Link to="/community" className="header__link header__community">
-            <div className="header__community">
-              <label className="header__community-label">COMMUNITY</label>
-            </div>
-          </Link>
-          <Link to="/gif" className="header__link header__gif">
-            <div className="header__recording">
-              <label className="header__recording-label">RECORDING</label>
-            </div>
-          </Link>
+          <div className="mobile__wrapper">
+            <Link to="/community" className="header__link header__community">
+              <div className="header__community">
+                <div className="header__community-label">COMMUNITY</div>
+              </div>
+            </Link>
+            <Link to="/gif" className="header__link header__gif">
+              <div className="header__recording">
+                <div className="header__recording-label">RECORDING</div>
+              </div>
+            </Link>
+          </div>
         </div>
         <hr className="header__seperater"></hr>
       </div>

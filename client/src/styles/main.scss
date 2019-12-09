@@ -6,8 +6,10 @@
 
 body {
   background-color: rgb(250, 250, 250);
+  font-family: gupterRegular;
 }
-
+@import "./partials/breakpoint";
+@import "./partials/fonts";
 @import "./partials/header";
 @import "./partials/community";
 @import "./partials/addcomment";

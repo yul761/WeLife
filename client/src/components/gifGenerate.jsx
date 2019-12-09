@@ -118,7 +118,7 @@ export default class gifGenerate extends Component {
     let uploadform = document.getElementsByClassName(
       "generate__mid-uploadform"
     )[0];
-    if (screen.srcObject !== undefined) {
+    if (screen.srcObject !== undefined && screen.srcObject !== null) {
       let tracks = screen.srcObject.getTracks();
       tracks.forEach(track => track.stop());
     }

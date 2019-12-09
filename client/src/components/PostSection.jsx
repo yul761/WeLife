@@ -29,6 +29,23 @@ export default class PostSection extends Component {
     if (flag) {
       this.showDivs(IndexSlider);
     }
+    let leftArrow = document.getElementsByClassName("PostSection__button-left");
+    let rightArrow = document.getElementsByClassName(
+      "PostSection__button-right"
+    );
+    if (
+      leftArrow !== undefined &&
+      rightArrow !== undefined &&
+      this.state.post !== undefined
+    ) {
+      if (this.state.post.length === 0) {
+        leftArrow[0].style.display = "none";
+        rightArrow[0].style.display = "none";
+      } else {
+        leftArrow[0].style.display = "inline-block";
+        rightArrow[0].style.display = "inline-block";
+      }
+    }
   }
 
   showDivs = n => {
@@ -274,7 +291,7 @@ export default class PostSection extends Component {
                 this.MenuCancelButtonHandler();
               }}
             >
-              CALCEL
+              CANCEL
             </button>
           </div>
         </div>
