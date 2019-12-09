@@ -4,9 +4,12 @@ WeLife is a website made by React (frontend) and Express (backend) to build a co
 
 ## Installtion
 
-git clone the repo and do npm install to install the require library
+git clone the repo and cd into both client and server folder to install the required libraries
 
 ```bash
+cd server/
+npm install
+cd client/
 npm install
 ```
 
