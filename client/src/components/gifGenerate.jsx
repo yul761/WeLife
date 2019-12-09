@@ -32,6 +32,7 @@ export default class gifGenerate extends Component {
   componentDidMount() {
     this.settingupCamera();
     this.uploadImg();
+    this.setupScreenCapture();
   }
 
   componentDidUpdate() {
@@ -86,7 +87,7 @@ export default class gifGenerate extends Component {
     // }
   };
 
-  startCapture = () => {
+  setupScreenCapture = () => {
     let realtimeContainer = document.getElementsByClassName(
       "generate__mid-realtime"
     )[0];
@@ -104,17 +105,55 @@ export default class gifGenerate extends Component {
         this.mediaRecorder = new MediaRecorder(stream, {
           mimeType: "video/webm"
         });
-        console.log(this.mediaRecorder);
-        this.mediaRecorder.addEventListener("dataavailable", event => {
-          if (event.data && event.data.size > 0) {
-            chunks.push(event.data);
-          }
-        });
-        this.mediaRecorder.start(10);
       });
     } else {
       alert("Your browser did not getdisplaymedia()");
     }
+  };
+
+  clearView = () => {
+    const screen = document.getElementsByClassName(
+      "generate__mid-realtime--video"
+    )[0];
+    let uploadform = document.getElementsByClassName(
+      "generate__mid-uploadform"
+    )[0];
+    if (screen.srcObject !== undefined) {
+      let tracks = screen.srcObject.getTracks();
+      tracks.forEach(track => track.stop());
+    }
+
+    //stop recording
+    this.mediaRecorder = null;
+
+    screen.srcObject = null;
+
+    uploadform.style.display = "none";
+  };
+
+  clearUploadform = () => {
+    const screen = document.getElementsByClassName(
+      "generate__mid-realtime--video"
+    )[0];
+    let uploadform = document.getElementsByClassName(
+      "generate__mid-uploadform"
+    )[0];
+    this.mediaRecorder = null;
+    screen.srcObject = null;
+
+    uploadform.style.display = "none";
+  };
+
+  startCapture = () => {
+    console.log(this.mediaRecorder);
+    chunks = [];
+    this.mediaRecorder.addEventListener("dataavailable", event => {
+      if (event.data && event.data.size > 0) {
+        chunks.push(event.data);
+      }
+    });
+    console.log(chunks);
+    this.mediaRecorder.start(10);
   };
 
   stopCapture = () => {
@@ -135,8 +174,6 @@ export default class gifGenerate extends Component {
     this.recording = window.URL.createObjectURL(
       new Blob(chunks, { type: "video/mp4" })
     );
-    console.log(chunks);
-    console.log(new Blob(chunks, { type: "video/mp4" }));
 
     let realtimeContainer = document.getElementsByClassName(
       "generate__mid-realtime"
@@ -153,7 +190,9 @@ export default class gifGenerate extends Component {
 
     this.setState({ recorded: this.recording });
     this.setState({ camRecorded: null });
-    chunks = [];
+    // chunks = [];
+
+    // this.setupScreenCapture();
   };
 
   uploadHandler = () => {
@@ -187,9 +226,9 @@ export default class gifGenerate extends Component {
 
       let file;
       if (this.state.recorded !== null) {
-        file = new File(chunks, "name", { type: "video/mp4" });
+        file = new File(chunks, "screen", { type: "video/mp4" });
       } else if (this.state.camRecorded !== null) {
-        file = new File(cams, "name", { type: "video/mp4" });
+        file = new File(cams, "camera", { type: "video/mp4" });
       }
 
       console.log(file);
@@ -199,7 +238,7 @@ export default class gifGenerate extends Component {
     }
   };
 
-  openCam = () => {
+  setupCamera = () => {
     let realtimeContainer = document.getElementsByClassName(
       "generate__mid-realtime"
     )[0];
@@ -216,21 +255,24 @@ export default class gifGenerate extends Component {
       )[0];
       navigator.mediaDevices.getUserMedia(constraints).then(stream => {
         video.srcObject = stream;
-
         this.mediaRecorder = new MediaRecorder(stream, {
           mimeType: "video/webm"
         });
-        console.log(this.mediaRecorder);
-        this.mediaRecorder.addEventListener("dataavailable", event => {
-          if (event.data && event.data.size > 0) {
-            cams.push(event.data);
-          }
-        });
-        this.mediaRecorder.start(10);
       });
     } else {
       alert(" Your browser did not support getUserMedia() ");
     }
+  };
+
+  openCam = () => {
+    console.log(this.mediaRecorder);
+    cams = [];
+    this.mediaRecorder.addEventListener("dataavailable", event => {
+      if (event.data && event.data.size > 0) {
+        cams.push(event.data);
+      }
+    });
+    this.mediaRecorder.start(10);
   };
 
   closeCam = () => {
@@ -266,7 +308,9 @@ export default class gifGenerate extends Component {
 
     this.setState({ camRecorded: this.recording });
     this.setState({ recorded: null });
-    cams = [];
+    // cams = [];
+
+    // this.setupCamera();
   };
 
   submitHandler = event => {
@@ -332,6 +376,13 @@ export default class gifGenerate extends Component {
       localUpload.style.width = "90%";
       localUpload.style.backgroundColor = "rgb(230, 230, 230)";
 
+      if (this.state.curMode === "LOCALUPLOAD") {
+        this.clearUploadform();
+      } else {
+        this.clearView();
+      }
+      this.setupScreenCapture();
+
       //screen record mode
       this.setState({ curMode: "SCREEN" });
     }
@@ -364,6 +415,13 @@ export default class gifGenerate extends Component {
       localUpload.style.marginLeft = "0";
       localUpload.style.width = "95%";
       localUpload.style.backgroundColor = "rgb(230, 230, 230)";
+
+      if (this.state.curMode === "LOCALUPLOAD") {
+        this.clearUploadform();
+      } else {
+        this.clearView();
+      }
+      this.setupCamera();
 
       // Camera record mode
       this.setState({ curMode: "CAMERA" });
@@ -399,9 +457,24 @@ export default class gifGenerate extends Component {
       screenButton.style.width = "90%";
       screenButton.style.backgroundColor = "rgb(230, 230, 230)";
 
+      this.clearView();
+
+      this.setupUploadForm();
+
       // local upload mode
       this.setState({ curMode: "LOCALUPLOAD" });
     }
+  };
+
+  setupUploadForm = () => {
+    let uploadform = document.getElementsByClassName(
+      "generate__mid-uploadform"
+    )[0];
+
+    uploadform.style.display = "flex";
+    uploadform.style.zIndex = "30";
+
+    this.uploadImg();
   };
 
   startRecordButtonAnimation = () => {
@@ -412,21 +485,6 @@ export default class gifGenerate extends Component {
     recordbuttonIcon.style.animationDuration = "1.5s";
     recordbuttonIcon.style.animationIterationCount = "infinite";
     recordbuttonIcon.style.animationTimingFunction = "linear";
-
-    // return recordbuttonIcon.animate(
-    //   [
-    //     {
-    //       "0%": { "box-shadow": "0px 0px 5px 0px rgba(0, 0, 0, 0.3)" },
-    //       "65%": { "box-shadow": "0px 0px 5px 13px rgba(0, 0, 0, 0.3)" },
-    //       "90%": { "box-shadow": "0px 0px 5px 13px rgba(0, 0, 0, 0)" }
-    //     }
-    //   ],
-    //   {
-    //     duration: 1500,
-    //     iterations: Infinity,
-    //     easing: "linear"
-    //   }
-    // );
   };
 
   stopRecordButtonAnimation = () => {
@@ -580,6 +638,14 @@ export default class gifGenerate extends Component {
 
     realtime.src = null;
     this.recording = null;
+
+    if (this.state.curMode === "SCREEN") {
+      this.setupScreenCapture();
+    } else if (this.state.curMode === "CAMERA") {
+      this.setupCamera();
+    } else if (this.state.curMode === "LOCALUPLOAD") {
+      this.setupUploadForm();
+    }
   };
 
   render() {

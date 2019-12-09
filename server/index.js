@@ -9,6 +9,7 @@ app.use(cors());
 
 app.use(bodyParser.json({ limit: "50mb", extend: true }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extend: true }));
+// app.use(bodyParser.json());
 
 app.use("/comment", commentComponent);
 

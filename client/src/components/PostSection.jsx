@@ -23,6 +23,9 @@ export default class PostSection extends Component {
 
   componentDidUpdate() {
     console.log("component did update");
+    // axios.get(`${url}/comment`).then(response => {
+    //   this.setState({ post: response.data });
+    // });
     if (flag) {
       this.showDivs(IndexSlider);
     }
@@ -48,8 +51,9 @@ export default class PostSection extends Component {
     console.log(x);
     console.log(IndexSlider - 1);
     console.log(x[IndexSlider - 1]);
-
-    x[IndexSlider - 1].style.display = "flex";
+    if (x[IndexSlider - 1] !== undefined) {
+      x[IndexSlider - 1].style.display = "flex";
+    }
   };
 
   plusDivs = n => {
@@ -103,7 +107,9 @@ export default class PostSection extends Component {
         axios.get(`${url}/comment`).then(response => {
           this.setState({ post: response.data });
           let menu = document.getElementsByClassName("PostSection__overlay")[0];
-          menu.style.display = "none";
+          if (menu !== undefined) {
+            menu.style.display = "none";
+          }
         })
       );
   };
