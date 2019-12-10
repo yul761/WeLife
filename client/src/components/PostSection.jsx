@@ -5,7 +5,7 @@ import axios from "axios";
 
 var IndexSlider = 1;
 var flag;
-var url = "http://localhost:8080";
+var url = "https://welife.herokuapp.com/";
 
 export default class PostSection extends Component {
   constructor() {
