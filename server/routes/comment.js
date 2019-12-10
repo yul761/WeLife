@@ -54,34 +54,28 @@ router.post("/", (request, response) => {
     response.json(collection);
     client.close();
   });
-
-  // content.push(newPost);
-
-  // json_helper.writeJson(contentFilename, content);
-  // response.json(content);
 });
 
+//pass database test
 // add comment to exist post
 router.put("/:id", (request, response) => {
-  // let newComment = request.body.comment;
   let postId = request.params.id;
   let curPost = content.find(element => element.id === postId);
   let curIndex = content.findIndex(element => element.id === postId);
-  // curPost.comment.push(newComment);
-
-  //replaceOne()
-  // content.splice(curIndex, 1, request.body);
-
-  // json_helper.writeJson(contentFilename, content);
-  // response.json(content);
 
   MongoClient.connect(url, async function(err, client) {
     const db = client.db("post");
 
     const replace = await db.collection("content").replaceOne(
-      { id: { $eq: { postId } } },
+      { id: { $eq: postId } },
       {
-        $set: request.body
+        $set: {
+          id: request.body.id,
+          name: request.body.name,
+          comment: request.body.comment,
+          image: request.body.image,
+          video: request.body.video
+        }
       }
     );
     const collection = await db
@@ -94,25 +88,17 @@ router.put("/:id", (request, response) => {
   });
 });
 
+//pass database test
 router.delete("/", (request, response) => {
   let id = request.body.id;
-  let location = undefined;
 
-  content.map((element, index) => {
-    if (element.id === id && location === undefined) {
-      location = index;
-    }
-  });
-
-  // content.splice(location, 1);
-  // json_helper.writeJson(contentFilename, content);
-  // response.json(content);
+  console.log(request.body);
 
   MongoClient.connect(url, async function(err, client) {
     const db = client.db("post");
-
+    console.log(request.body);
     const remove = await db.collection("content").deleteMany({
-      id: { $eq: { id } }
+      id: { $eq: id }
     });
     const collection = await db
       .collection("content")
