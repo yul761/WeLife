@@ -11,7 +11,7 @@ import AddComment from "../components/AddComment";
 
 var chunks = [];
 var cams = [];
-var url = "http://localhost:8080";
+var url = "https://welife.herokuapp.com/";
 var dataUrl;
 var imgUrl;
 export default class gifGenerate extends Component {
