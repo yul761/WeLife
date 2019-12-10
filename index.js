@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
+const path = require("path ");
 
 const commentComponent = require("./routes/comment");
 
@@ -70,6 +71,14 @@ const url =
 app.use("/comment", commentComponent);
 
 const PORT = process.env.PORT || 8080;
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
