@@ -63,28 +63,6 @@ export default class gifGenerate extends Component {
   };
   settingupCamera = () => {
     console.log("settingup camera executed");
-
-    // ***********Open camera****************//
-    // if (this.hasGetUserMedia()) {
-    //   const constraints = { video: true };
-    //   const video = document.getElementById("previewCamera");
-    //   navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-    //     video.srcObject = stream;
-    //   });
-    // } else {
-    //   alert(" Your browser did not support getUserMedia() ");
-    // }
-
-    // if (this.hasGetDisplayMedia()) {
-    //   const screen = document.getElementById("screenMedia");
-    //   navigator.mediaDevices
-    //     .getDisplayMedia({ video: true, width: "950px" })
-    //     .then(stream => {
-    //       screen.srcObject = stream;
-    //     });
-    // } else {
-    //   alert("Your browser did not getdisplaymedia()");
-    // }
   };
 
   setupScreenCapture = () => {

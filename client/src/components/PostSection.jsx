@@ -109,7 +109,7 @@ export default class PostSection extends Component {
   MenuDeleteButtonHandler = () => {
     console.log(this.state.curId);
     axios
-      .delete(`${url}/comment`, this.state.curId)
+      .delete(`${url}/comment`, { data: { id: this.state.curId } })
       .then(response => {
         console.log(response);
         let newpost = [];
@@ -123,6 +123,7 @@ export default class PostSection extends Component {
       .then(
         axios.get(`${url}/comment`).then(response => {
           this.setState({ post: response.data });
+          console.log(response.data);
           let menu = document.getElementsByClassName("PostSection__overlay")[0];
           if (menu !== undefined) {
             menu.style.display = "none";
@@ -141,6 +142,8 @@ export default class PostSection extends Component {
       likes: 0
     };
     post.comment.push(newComment);
+
+    console.log(post);
 
     axios.put(`${url}/comment/${id}`, post).then(response => {
       this.setState({ post: response.data });
