@@ -304,7 +304,7 @@ export default class gifGenerate extends Component {
       video: dataUrl
     };
     console.log(dataUrl);
-    axios.post(`${url}/comment`, newPost).then(response => {
+    axios.post(`/comment`, newPost).then(response => {
       console.log(response.data);
     });
 
@@ -580,7 +580,7 @@ export default class gifGenerate extends Component {
     };
 
     axios
-      .post(`${url}/comment`, newComment)
+      .post(`/comment`, newComment)
       .then(response => {
         // alert("New Post Added.");
         console.log(response.data);

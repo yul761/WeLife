@@ -15,7 +15,7 @@ export default class Community extends Component {
   }
 
   componentDidMount() {
-    axios.get(`${url}/comment`).then(response => {
+    axios.get(`/comment`).then(response => {
       this.setState({ post: response.data });
     });
 
