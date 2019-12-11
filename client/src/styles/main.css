@@ -429,6 +429,7 @@ body {
 
 .PostSection__content-commentSection--userInfo--name {
   width: 80%;
+  font-size: 3.2vw;
 }
 
 .PostSection__content-commentSection--userInfo--edit {
