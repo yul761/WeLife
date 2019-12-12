@@ -9,5 +9,7 @@ Go to https://welife.herokuapp.com to see some interesting post
 ## Technologies
 
 FrontEnd : ReactJS, HTML5, SASS, Javascript.
+
 BackEnd : NodeJS, ExpressJS.
+
 Database : MongoDB
