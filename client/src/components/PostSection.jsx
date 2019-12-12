@@ -5,7 +5,7 @@ import axios from "axios";
 
 var IndexSlider = 1;
 var flag;
-var url = "https://welife.herokuapp.com/";
+var url = "http://localhost:8080";
 
 export default class PostSection extends Component {
   constructor() {
@@ -16,7 +16,7 @@ export default class PostSection extends Component {
   componentDidMount() {
     flag = false;
     console.log("component did mount");
-    axios.get(`/comment`).then(response => {
+    axios.get(`${url}/comment`).then(response => {
       this.setState({ post: response.data });
     });
   }
@@ -109,7 +109,7 @@ export default class PostSection extends Component {
   MenuDeleteButtonHandler = () => {
     console.log(this.state.curId);
     axios
-      .delete(`/comment`, { data: { id: this.state.curId } })
+      .delete(`${url}/comment`, { data: { id: this.state.curId } })
       .then(response => {
         console.log(response);
         let newpost = [];
@@ -121,7 +121,7 @@ export default class PostSection extends Component {
         this.setState({ post: newpost });
       })
       .then(
-        axios.get(`/comment`).then(response => {
+        axios.get(`${url}/comment`).then(response => {
           this.setState({ post: response.data });
           console.log(response.data);
           let menu = document.getElementsByClassName("PostSection__overlay")[0];
@@ -145,7 +145,7 @@ export default class PostSection extends Component {
 
     console.log(post);
 
-    axios.put(`/comment/${id}`, post).then(response => {
+    axios.put(`${url}/comment/${id}`, post).then(response => {
       this.setState({ post: response.data });
       // console.log(response.data);
     });

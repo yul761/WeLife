@@ -3,7 +3,7 @@ import axios from "axios";
 import upload from "../assets/icon/upload.png";
 import $ from "jquery";
 
-var url = "http://localhost:8080";
+// var url = "http://localhost:8080";
 
 export default class AddComment extends Component {
   componentDidMount() {

@@ -11,7 +11,7 @@ import AddComment from "../components/AddComment";
 
 var chunks = [];
 var cams = [];
-var url = "https://welife.herokuapp.com/";
+var url = "http://localhost:8080";
 var dataUrl;
 var imgUrl;
 export default class gifGenerate extends Component {
@@ -304,7 +304,7 @@ export default class gifGenerate extends Component {
       video: dataUrl
     };
     console.log(dataUrl);
-    axios.post(`/comment`, newPost).then(response => {
+    axios.post(`${url}/comment`, newPost).then(response => {
       console.log(response.data);
     });
 
@@ -580,7 +580,7 @@ export default class gifGenerate extends Component {
     };
 
     axios
-      .post(`/comment`, newComment)
+      .post(`${url}/comment`, newComment)
       .then(response => {
         // alert("New Post Added.");
         console.log(response.data);
