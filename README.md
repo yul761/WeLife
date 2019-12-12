@@ -1,7 +1,13 @@
 # WeLife
 
-WeLife is a website made by React (frontend) and Express (backend) to build a community to share your side-project and interesting life fragment
+WeLife is a combination of LinkedIn and Instagram, which is a social media that you could not only share live demos of your epic projects, but also show your awesome personalities.
 
 ## Usage
 
-Go to welife.herokuapp.com to see some interesting post
+Go to https://welife.herokuapp.com to see some interesting post
+
+## Technologies
+
+FrontEnd : ReactJS, HTML5, SASS, Javascript.
+BackEnd : NodeJS, ExpressJS.
+Database : MongoDB
